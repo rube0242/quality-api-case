@@ -53,3 +53,20 @@ TEST_F(QualityServiceTest, SensorHealthDetectsWarningAndUnstable) {
     EXPECT_EQ(service.evaluateSensorHealth({20, 70, 21}), "UNSTABLE");
     EXPECT_EQ(service.evaluateSensorHealth({10, 20, 110}), "ERROR");
 }
+TEST_F(QualityServiceTest, GradeScoreExactly60ShouldBeD) {
+    EXPECT_EQ(service.calculateGrade(60), "D");
+    EXPECT_EQ(service.calculateGrade(59), "F");
+    EXPECT_EQ(service.calculateGrade(61), "D");
+}
+
+TEST_F(QualityServiceTest, DiscountAmountExactly100ShouldGive10Percent) {
+    EXPECT_EQ(service.calculateDiscount({100, false, "", false, 12}), 10);
+    EXPECT_EQ(service.calculateDiscount({99, false, "", false, 12}), 0);
+    EXPECT_EQ(service.calculateDiscount({101, false, "", false, 12}), 10);
+}
+
+TEST_F(QualityServiceTest, SensorAveragePrecisionWithTwoValues) {
+    EXPECT_DOUBLE_EQ(service.calculateSensorAverage({1, 2}), 1.5);
+    EXPECT_DOUBLE_EQ(service.calculateSensorAverage({3, 4}), 3.5);
+    EXPECT_DOUBLE_EQ(service.calculateSensorAverage({0, 1}), 0.5);
+}
