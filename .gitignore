@@ -1,0 +1,8 @@
+build/
+out/
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+cmake_install.cmake
+Testing/
+compile_commands.json
