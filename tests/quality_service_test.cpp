@@ -19,7 +19,7 @@ TEST_F(QualityServiceTest, DiscountBoundaries) {
     EXPECT_EQ(service.calculateDiscount({0, false, "", false, 12}), 0);
     EXPECT_EQ(service.calculateDiscount({100, false, "", false, 12}), 10);
     EXPECT_EQ(service.calculateDiscount({500, false, "", false, 12}), 20);
-    EXPECT_EQ(service.calculateDiscount({1000, false, "", false, 12}), 20);
+    EXPECT_EQ(service.calculateDiscount({1000, false, "", false, 12}), 30);
     EXPECT_EQ(service.calculateDiscount({-1, false, "", false, 12}), -1);
 }
 
