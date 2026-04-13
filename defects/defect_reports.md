@@ -1,7 +1,7 @@
 # Defect Reports — Quality API
 **Black Box Test | April 2026**
 
----
+https://github.com/rube0242/quality-api-case
 
 ## Oversigt
 
