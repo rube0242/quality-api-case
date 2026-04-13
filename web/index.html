@@ -25,7 +25,7 @@
     <section class="card">
       <h2>Karakter</h2>
       <input id="score" type="number" placeholder="fx 60">
-      <button onclick="callApi('/api/grade?score=' + valueOf('score'), 'gradeResult')">Kald /api/grade</button>
+      <button onclick="callApi('/api/grade?score=' + getVal('score'), 'gradeResult')">Kald /api/grade</button>
       <div id="gradeResult" class="result"></div>
     </section>
     <section class="card">
@@ -52,22 +52,22 @@
     <section class="card">
       <h2>Brugernavn</h2>
       <input id="name" type="text" placeholder="fx   Alice  ">
-      <button onclick="callApi('/api/username?name=' + encodeURIComponent(valueOf('name')), 'userResult')">Kald /api/username</button>
+      <button onclick="callApi('/api/username?name=' + encodeURIComponent(getVal('name')), 'userResult')">Kald /api/username</button>
       <div id="userResult" class="result"></div>
     </section>
     <section class="card">
       <h2>Sensoranalyse</h2>
       <p class="hint">CSV-liste, fx 1,2 eller 20,70,21.</p>
       <input id="values" type="text" placeholder="1,2,3">
-      <button onclick="callApi('/api/sensor-average?values=' + encodeURIComponent(valueOf('values')), 'sensorAverageResult')">Kald /api/sensor-average</button>
-      <button onclick="callApi('/api/sensor-health?values=' + encodeURIComponent(valueOf('values')), 'sensorHealthResult')">Kald /api/sensor-health</button>
+      <button onclick="callApi('/api/sensor-average?values=' + encodeURIComponent(getVal('values')), 'sensorAverageResult')">Kald /api/sensor-average</button>
+      <button onclick="callApi('/api/sensor-health?values=' + encodeURIComponent(getVal('values')), 'sensorHealthResult')">Kald /api/sensor-health</button>
       <div id="sensorAverageResult" class="result"></div>
       <div id="sensorHealthResult" class="result"></div>
     </section>
   </main>
   <script>
     const API_BASE = 'http://localhost:8080';
-    const valueOf = id => document.getElementById(id).value;
+    var getVal = id => document.getElementById(id).value;
     async function callApi(path, targetId) {
       const target = document.getElementById(targetId);
       try {
@@ -81,13 +81,13 @@
     function discountCall() {
       const loyal = document.getElementById('loyal').checked ? '1' : '0';
       const production = document.getElementById('production').checked ? '1' : '0';
-      const path = '/api/discount?amount=' + valueOf('amount') + '&coupon=' + encodeURIComponent(valueOf('coupon')) + '&loyal=' + loyal + '&production=' + production + '&hour=' + valueOf('hour');
+      const path = '/api/discount?amount=' + getVal('amount') + '&coupon=' + encodeURIComponent(getVal('coupon')) + '&loyal=' + loyal + '&production=' + production + '&hour=' + getVal('hour');
       callApi(path, 'discountResult');
     }
     function bookingCall() {
       const overrideValue = document.getElementById('override').checked ? '1' : '0';
       const maintenance = document.getElementById('maintenance').checked ? '1' : '0';
-      const path = '/api/booking?seats=' + valueOf('seats') + '&reserved=' + valueOf('reserved') + '&override=' + overrideValue + '&maintenance=' + maintenance;
+      const path = '/api/booking?seats=' + getVal('seats') + '&reserved=' + getVal('reserved') + '&override=' + overrideValue + '&maintenance=' + maintenance;
       callApi(path, 'bookingResult');
     }
   </script>
